@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   resources :comments
-  resources :microposts
+  resources :microposts do
+    resources :comments
+  end
   devise_for :users
   root 'staticpages#home'
 

@@ -10,6 +10,9 @@ class MicropostsController < ApplicationController
   # GET /microposts/1
   # GET /microposts/1.json
   def show
+    @comments = @micropost.comments.includes(:user)
+    #Comment.where(post_id: @micropost.id).all    
+    @comment = @micropost.comments.build
   end
 
   # GET /microposts/new
@@ -26,6 +29,10 @@ class MicropostsController < ApplicationController
   def create
     @micropost = Micropost.new(micropost_params)
     @micropost.user_id = current_user.id
+
+    @comments = @micropost.comments.all
+    @comment = @micropost.comments.build
+
     respond_to do |format|
       if @micropost.save
         format.html { redirect_to @micropost, notice: 'Micropost was successfully created.' }

@@ -4,11 +4,14 @@
   <strong>Content:</strong>
   <%= @micropost.content %>
 </p>
+<% for comment in @comments %>
+	<p><%= comment.user.email %></p>
+	<p><%=comment.content%></p>
+<% end %>
 
-<p>
-  <strong>User:</strong>
-  <%= @micropost.user %>
-</p>
+ <div class="well">
+       <%= render 'comments/form' %>	
+    </div>
 
 <%= link_to 'Edit', edit_micropost_path(@micropost) %> |
 <%= link_to 'Back', microposts_path %>
