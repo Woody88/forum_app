@@ -4,9 +4,11 @@
   <strong>Content:</strong>
   <%= @micropost.content %>
 </p>
-<% for comment in @comments %>
-	<p><%= comment.user.email %></p>
-	<p><%=comment.content%></p>
+<% if @comments %>
+	<% for comment in @comments %>
+		<p><%= comment.user.email %></p>
+		<p><%=comment.content%></p>
+	<% end %>
 <% end %>
 
  <div class="well">
